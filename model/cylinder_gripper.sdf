@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="cylinder_gripper">
+    <!--
+    Axes:
+      +Z - pointing toward the top.
+    Origin:
+      (0, 0, 0) at the center
+    -->
+    <link name="base_link">
+      <inertial>
+        <pose>0.0042 0.00000 -0.0059 0 0 0</pose>
+        <mass>0.321</mass>
+        <inertia>
+          <ixx> 0.000446</ixx>
+          <ixy> 0.000000</ixy>
+          <ixz>-0.000016</ixz>
+          <iyy> 0.000515</iyy>
+          <iyz> 0.000000</iyz>
+          <izz> 0.000415</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual_cylinder">
+        <pose>0 0 0.05 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0.9 0.9 0.9 1.0</diffuse>
+        </material>
+      </visual>
+      <visual name="visual_sphere">
+        <pose>0 0 0.1 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>5e-3</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <diffuse>1.0 0 0 1.0</diffuse>
+        </material>
+      </visual>
+      <collision name="collision_cylinder">
+        <pose>0 0 0.05 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.1</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <!-- Add spheres to bottom and top rims to avoid surface/surface
+      collision (which causes jumping). -->
+      <collision name="collision_sphere">
+        <pose>0 0 0.1 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>5e-3</radius>
+          </sphere>
+        </geometry>
+      </collision>
+    </link>
+    <frame link="base_link" name="finger_point" xyz="0 0 0.1"/>
+  </model>
+</sdf>
